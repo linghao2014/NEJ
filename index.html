@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#anim{position:relative;height:50px;width:800px;margin:5px 0;border:1px solid #696969;}
+#bnt2{position:absolute;top:0;left:0;width:50px;height:50px;background-color:#FFE4C4;font-size:12px;line-height:50px;text-align:center;cursor:pointer;}
+#ball{position:absolute;top:20px;left:70px;width:10px;height:10px;background-color:black;border-radius:10px;}
+	</style>
+</head>
+<body>
+	<div id='anim'>
+  <div id='bnt2'>点我</div>
+  <div id='ball'></div>
+</div>
+	<script src="http://nej.netease.com/nej/src/define.js?pro=./"></script>
+<script>
+var f=function(){
+    var _ = NEJ.P,
+        _e = _('nej.e'),
+        _v = _('nej.v'),
+        _p = _('nej.ut');
+
+    var _ac = _p._$$AnimBounce._$allocate({from:{offset:70,velocity:1000},acceleration:500,springtension:0.5,onstop:_onBounceStop,onupdate:_onBounceUpdate})
+
+    function _onBounceStop(_offset){
+        //todo
+    }
+    function _onBounceUpdate(_offset){
+        _e._$get('ball').style.left = _offset.offset +'px';
+    }
+
+    _v._$addEvent(_e._$get('bnt2'),'click',_onBnt2Click._$bind(this));
+    function _onBnt2Click(event){
+        _ac._$play();
+    };
+};
+define(['{lib}util/animation/bounce.js'],f);
+</script>
+</body>
+</html>
